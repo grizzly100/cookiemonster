@@ -26,9 +26,9 @@ public class Main {
         new Main().run();
     }
 
-    protected List<String> newHostKeys = new LinkedList<>();
-    protected List<String> undecidedHostKeys = new LinkedList<>();
-    protected List<String> keepHostKeys = new LinkedList<>();
+    final protected List<String> newHostKeys = new LinkedList<>();
+    final protected List<String> undecidedHostKeys = new LinkedList<>();
+    final protected List<String> keepHostKeys = new LinkedList<>();
 
     protected void run() throws IOException {
 
@@ -101,7 +101,6 @@ public class Main {
 
     protected void onUndecided(String host_key) {
         undecidedHostKeys.add(host_key);
-        System.out.println("undecided " + host_key);
     }
 
     protected void onKeep(String host_key) {
@@ -116,7 +115,7 @@ public class Main {
         String sql = "delete from cookies where host_key = '" + host_key + "'";
         System.out.println("DELETE: " + sql);
         deleteStmt.executeUpdate(sql);
-        //connection.commit();
+        // "connection.commit();" not needed as "database in auto-commit mode"
     }
 
     // helpers
